@@ -1,0 +1,68 @@
+reiser4progs (1.0.0-1) unstable; urgency=low
+
+  This release introduces a new layout of blocks containing the backup
+  of file system metadata.
+
+  Post 0.5.5 users
+  ~~~~~~~~~~~~~~~~
+  No kernel patch update is required (but a recent one like 20040813
+  is always advised).
+  
+  To fix the layout of these blocks, issue the following command:
+
+    # debugfs.reiser4 -C <device>
+
+  Do not use fsck.reiser4 1.0.0 before this command or you could
+  loose data.
+
+  After this conversion it is a good idea to check the file system with
+  the new fsck.reiser4 1.0.0. It could complain about "wrong bytes"
+  inconsistencies, which are not harmful. Making it fix them is enough.
+
+
+  Pre 0.5.5 users
+  ~~~~~~~~~~~~~~~
+  A recent version of the Reiser4 kernel patch is also required to be
+  applied in the kernel build in order to use the new disk format.
+
+  If you are coming from a pre 0.5.5 disk format and you likely have
+  only reiser4progs 1.0.0, this is the right command sequence for you:
+
+    1. # fsck.reiser4 --build-sb <device>
+    2. # debugfs.reiser4 -C <device>
+    3. # fsck.reiser4 <device>
+
+  You should also issue any other invocation command 3. asks to fix
+  the filesystem.
+
+
+  Both these playings with the file system should preserve existing
+  data but a good backup could preserve it better.
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 16 Aug 2004 14:19:30 +0200
+
+reiser4progs (0.5.5-1) experimental; urgency=low
+
+  This release introduced a new formatting policy and the plugin sets.
+  A recent version of the Reiser4 kernel patch is also required to be
+  applied in the kernel build in order to use the new disk format.
+  
+  To update the formatting policy id in the superblock of an existing
+  Reiser4 file system, the following command is required:
+
+    # fsck.reiser4 --build-sb <device>
+
+  Then, to add the pset to the root directory:
+
+    # fsck.reiser4 --fix <device>
+
+  A simpler way could be to invoke:
+
+    # fsck.reiser4 <device>
+
+  and then issue any other invocation it asks for.
+
+  This conversion should preserve all the data already present in the
+  file system but a recent backup could be safer than these words.
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed, 16 Jun 2004 22:19:29 +0200

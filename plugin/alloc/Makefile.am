@@ -1,0 +1,2 @@
+SUBDIRS = alloc40
+

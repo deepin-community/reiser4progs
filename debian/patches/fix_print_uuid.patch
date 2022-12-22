@@ -1,0 +1,42 @@
+Author: Edward Shishkin <edward.shishkin@gmail.com>
+Date:   Sat Mar 13 15:21:09 2021 +0100
+Subject: Fix up repair_master_print()
+
+Use the right criteria to make sure that uuid is set
+
+Signed-off-by: Edward Shishkin <edward.shishkin@gmail.com>
+
+Origin: upstream, https://github.com/edward6/reiser4progs/commit/4802cdb18ae03031d0e51a58b6655f3b99021ec2
+Bug-Debian: https://bugs.debian.org/985586
+
+diff --git a/librepair/master.c b/librepair/master.c
+index c7806c566..dadf21a3c 100644
+--- a/librepair/master.c
++++ b/librepair/master.c
+@@ -4,6 +4,14 @@
+    librepair/master.c - methods are needed for work with broken master 
+    super block. */
+ 
++#ifdef HAVE_CONFIG_H
++#  include <config.h>
++#endif
++
++#if defined(HAVE_LIBUUID) && defined(HAVE_UUID_UUID_H)
++#  include <uuid/uuid.h>
++#endif
++
+ #include <repair/librepair.h>
+ 
+ /* Checks the blocksize. */
+@@ -347,9 +355,9 @@ void repair_master_print(reiser4_master_t *master,
+ 			  pid, plug ? plug->label : "absent");
+ 
+ #if defined(HAVE_LIBUUID) && defined(HAVE_UUID_UUID_H)
+-	if (*master->ent.ms_uuid != '\0') {
++	if (!uuid_is_null((unsigned char *)master->ent.ms_uuid)) {
+ 		char uuid[37];
+-		
++
+ 		uuid[36] = '\0';
+ 		unparse(reiser4_master_get_uuid(master), uuid);
+ 		aal_stream_format(stream, "uuid:\t\t%s\n", uuid);

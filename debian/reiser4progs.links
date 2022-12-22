@@ -1,0 +1,2 @@
+sbin/mkfs.reiser4 sbin/mkreiser4
+usr/share/man/man8/mkfs.reiser4.8.gz usr/share/man/man8/mkreiser4.8.gz

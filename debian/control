@@ -1,0 +1,35 @@
+Source: reiser4progs
+Section: admin
+Priority: optional
+Maintainer: Felix Zielcke <fzielcke@z-51.de>
+Build-Depends: debhelper-compat (=12),
+               libaal-dev (<< 1.0.8),
+               libaal-dev (>= 1.0.7),
+               libedit-dev,
+               uuid-dev
+Standards-Version: 4.5.0
+Homepage: https://reiser4.wiki.kernel.org
+
+Package: reiser4progs
+Architecture: linux-any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: administration utilities for the Reiser4 filesystem
+ The following utilities to manage Reiser4 filesystems are provided:
+ .
+   - debugfs.reiser4
+   - fsck.reiser4
+   - measurefs.reiser4
+   - mkfs.reiser4
+
+Package: libreiser4-dev
+Section: libdevel
+Architecture: linux-any
+Multi-Arch: same
+Depends: libaal-dev (>= 1.0.7),
+         libc6-dev | libc-dev,
+         uuid-dev,
+         ${misc:Depends}
+Description: Reiser4's filesystem access and manipulation library. Devel files
+ These are the development files for Reiser4 libraries.
+ .
+ They are part of the Reiser4's filesystem support tools.

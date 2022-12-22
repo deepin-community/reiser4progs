@@ -1,0 +1,5 @@
+fix_ldconfig.patch
+05_libreiser4~profile.c.patch
+Build-with-libedit-instead-of-readline.patch
+fix_print_uuid.patch
+fix_null_uuid.patch

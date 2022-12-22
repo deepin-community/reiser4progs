@@ -1,0 +1,385 @@
+reiser4progs (1.2.1-3) unstable; urgency=medium
+
+  * Add patches to fix creation of filesystems without an UUID. Thanks
+    Mike Fleetwood for the report + patches! (Closes: #985586)
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sat, 20 Mar 2021 15:02:23 +0100
+
+reiser4progs (1.2.1-2) unstable; urgency=medium
+
+  * Build with libedit instead of orphaned libreadline5. Thanks Bastian
+    Germann for the patch! (Closes: #966149)
+  * Bump Standards-Version to 4.5.0.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Fri, 24 Jul 2020 08:25:47 +0200
+
+reiser4progs (1.2.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop falign_fix.patch. Included upstream.
+  * Really drop dependency on libncurses5-dev. (Closes: #667889)
+  * Update to debhelper compat level 12.
+  * Update to policy 4.4.0.
+  * Update watch file to version 4.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sun, 07 Jul 2019 18:16:21 +0200
+
+reiser4progs (1.2.0-2) unstable; urgency=medium
+
+  * New patch falign_fix.patch to fix the -falign-loop configure check.
+    Thanks to Adrian Bunk for the hint. (Closes: #882854)
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Mon, 27 Nov 2017 16:31:25 +0100
+
+reiser4progs (1.2.0-1) unstable; urgency=medium
+
+  * New upstream release.x
+  * Bump dependency on libaal to 1.0.7
+  * Refresh patches.
+  * Remove unnecessary build dependency on dh-autoreconf.
+  * Bump standards version to 4.1.1.
+    - Change priority to optional.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Mon, 27 Nov 2017 10:20:03 +0100
+
+reiser4progs (1.1.0-4) unstable; urgency=medium
+
+  * Switch to debhelper 10. Patch by Balint Reczey. (Closes: #864794)
+  * Update to policy 3.9.8.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sat, 17 Jun 2017 15:47:18 +0200
+
+reiser4progs (1.1.0-3) unstable; urgency=medium
+
+  * Compile with -fPIC on mips and mipsel. Patch by Radovan Birdic.
+    (Closes: #844739)
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Fri, 18 Nov 2016 16:25:49 +0100
+
+reiser4progs (1.1.0-2) unstable; urgency=medium
+
+  * Build-depend on libaal >= 1.0.6-2 to fix FTBFS (Closes: #841613)x
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Fri, 21 Oct 2016 16:39:50 +0200
+
+reiser4progs (1.1.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update watch file.
+  * Update to policy 3.9.6.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Wed, 02 Sep 2015 21:48:25 +0200
+
+reiser4progs (1.0.9-2) unstable; urgency=medium
+
+  * Make the package Arch: linux-any.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sat, 02 Aug 2014 15:57:10 +0200
+
+reiser4progs (1.0.9-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump libaal dependency to 1.0.6.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sat, 02 Aug 2014 14:45:55 +0200
+
+reiser4progs (1.0.8-1) unstable; urgency=low
+
+  * New upstream version.
+  * Convert to source format 3.0 (quilt).
+  * Remove DMUA field.
+  * Remove build dependency on libncurses5-dev. Not used.x
+    (Closes: #667889)
+  * Update to policy 3.9.5.
+  * Patch 01_gcc_4_4.diff removed. Merged upstream.
+  * Enable hardened build flags.
+  * Update watch file.
+  * Change to debhelper compat level 9.
+  * Set homepage to the kernel.org wiki page.
+  * Build and ship the shared libreiser4.
+  * Switch build system from cdbs to dh command.
+  * Bump build dependency on libaal to 1.0.5-6.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sat, 04 Jan 2014 15:08:38 +0100
+
+reiser4progs (1.0.7-6.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Modified the test target in debian/rules, to prevent a circularx
+    build-dependency which resulted in a FTBFS behavior. Checked it with
+    pdebuild. Then removed the test, which is not necessary to build thex
+    package.
+  * checked that the dependencies of the built binaries are nowx
+    libreadline5-dev and libreadline-gplv2-dev, which are compatible.
+    Closes: #634654
+  * bumped Standards version to 3.9.2
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sat, 17 Sep 2011 14:56:27 +0200
+
+reiser4progs (1.0.7-6.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * applied one patch from Thomas Tsai, to fix a bug whose notification
+    was published in http://www.spinics.net/lists/reiserfs-devel/msg01698.html
+  * added Thomas Tsai's simple test to check whether a program can be linked
+    with libreiser4 in debian/rules
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Mon, 05 Sep 2011 18:52:46 +0200
+
+reiser4progs (1.0.7-6.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Modified the build-dependency: libreadline-gplv2-dev rather thanx
+    libreadlin5-dev: Closes: #634683
+  * Applied Guus Sliepen's patch. Closes: #632633
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sat, 27 Aug 2011 00:35:06 +0200
+
+reiser4progs (1.0.7-6) unstable; urgency=low
+
+  * Remove udebs. Very unlikely that d-i will ever use them. Request by
+    Frans Pop. (Closes: #567858)
+  * Bump Standards-Version to 3.8.4.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Mon, 01 Feb 2010 13:50:40 +0100
+
+reiser4progs (1.0.7-5) unstable; urgency=low
+
+  * Build depend on libreadline-dev instead of libreadline5-dev.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sun, 13 Sep 2009 16:53:49 +0200
+
+reiser4progs (1.0.7-4) unstable; urgency=low
+
+  * Remove libaal.la, libaal-minimal.la and librepair.la from libreiser4-dev.
+  * Update Standards-Version to 3.8.3.
+  * Really remove the Suggests: kernel-patch-2.6-reiser4.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Tue, 25 Aug 2009 12:50:33 +0200
+
+reiser4progs (1.0.7-3) unstable; urgency=low
+
+  * Add a build dependency on autotools-dev so CDBS updates config.guess
+    and config.sub.
+  * Update Standards-Version to 3.8.2. No changes needed.
+  * Remove Suggests: kernel-patch-2.6-reiser4. It has been removed from
+    Debian 2007.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sat, 18 Jul 2009 14:03:46 +0200
+
+reiser4progs (1.0.7-2) unstable; urgency=low
+
+  * Remove /sbin/make_reiser4 hardlink.x
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Wed, 04 Mar 2009 10:29:35 +0100
+
+reiser4progs (1.0.7-1) unstable; urgency=low
+
+  * New maintainer (Closes: #483027)
+  * New upstream version.
+  * Rewrite build system using CDBS debhelper.mk.
+    - configure udebs with `--with-readline=no' (Closes: #497413)
+  * Switch quilt patch system to CDBS simple-patchsys.
+  * Change download url in debian/copyright to the kernel.org one.
+  * debian/patches/02_fix_ldconfig: New patch to run `run-ldconfig' from
+    `$(top_srcdir)' instead of `./'
+  * Change debhelper compat level to 6 and build-depend on it.
+  * Add a debian/watch file.
+
+ -- Felix Zielcke <fzielcke@z-51.de>  Sun, 08 Feb 2009 17:02:43 +0100
+
+reiser4progs (1.0.6-2) unstable; urgency=low
+
+  * QA upload.
+    + Set maintainer to Debian QA Group <packages@qa.debian.org>.
+  * Add quilt patch system.
+    + 01_gcc_4_4.diff - Build with gcc-4.4. (Closes: #504839).
+      + Thanks to Martin Michlmayr for the fix!
+  * Make clean not ignore errors.
+  * Remove old lintian overrides.
+  * Remove dead Homepage URL from package descriptions.
+  * Replace pwd with $(CURDIR) in rules.
+  * Add ${misc:Depends} to binary packages.
+  * Add appropriate Copyright holder to debian/copyright.
+    + Change license path to point to GPL-2 license.
+  * Bump debhelper build-dep and compat to 5.
+  * Bump Standards Version to 3.8.0.
+
+ -- Barry deFreese <bdefreese@debian.org>  Fri, 06 Feb 2009 22:44:38 -0500
+
+reiser4progs (1.0.6-1) unstable; urgency=low
+
+  * New upstream release (closes: #423684).
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed, 23 May 2007 01:45:27 +0200
+
+reiser4progs (1.0.5-2) unstable; urgency=low
+
+  * Minimal library (required to add reiser4 support to grub) is now
+    built using --enable-libminimal configure switch.
+  * Moved previous debconf note to README.Debian (closes: #388955).
+  * Removed all the debconf translations (closes: #333169).
+    Thanks to all the translators!
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri, 29 Sep 2006 09:19:20 +0200
+
+reiser4progs (1.0.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu, 18 Aug 2005 13:00:20 +0200
+
+reiser4progs (1.0.4-2) unstable; urgency=low
+
+  * Fixed gcc 4.0 build errors (closes: #305613).
+  * Added German debconf translation (closes: #318733).
+  * Added Vietnamese debconf translation (closes: #317644).
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri, 22 Jul 2005 00:46:45 +0200
+
+reiser4progs (1.0.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed cpfs and resizefs utilities. These were only place holders
+    with no real functionality.
+  * Added Brazilian Portuguese debconf translation (closes: #297033).
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 28 Feb 2005 13:12:26 +0100
+
+reiser4progs (1.0.3-3) unstable; urgency=low
+
+  * Updated build dependency on libreadline5-dev (closes: #292312).x
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed, 26 Jan 2005 11:38:25 +0100
+
+reiser4progs (1.0.3-2) unstable; urgency=low
+
+  * Fixed bus error on sparc64 (closes: #289747).
+    Patch courtesy of Vitaly Fertman.
+  * Fixed FTBFS on amd64/gcc-4.0 (closes: #288414).
+    Patch courtesy of Vitaly Fertman.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu, 20 Jan 2005 12:51:50 +0100
+
+reiser4progs (1.0.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added Czech debconf translation (closes: #273843).
+  * Added Italian debconf translation (closes: #277697).
+  * Improved udebs short descriptions (closes: #282448).
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri, 10 Dec 2004 23:55:20 +0100
+
+reiser4progs (1.0.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added watch file.
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri, 19 Nov 2004 11:42:51 +0100
+
+reiser4progs (1.0.0-5) unstable; urgency=low
+
+  * Uses debhelper to build udebs.
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri,  3 Sep 2004 14:41:52 +0200
+
+reiser4progs (1.0.0-4) experimental; urgency=low
+
+  * Added udebs for debian-installer.
+  * Added French debconf translation (closes: #268062).
+  * Added Japanese debconf translation (closes: #269011).
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed,  1 Sep 2004 17:05:53 +0200
+
+reiser4progs (1.0.0-3) unstable; urgency=medium
+
+  * Fixed conversion instructions for pre-0.5.5 disk formats
+    (closes: #267930).
+  * Added support for conditional build of udeb packages (disabled
+    by default).
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed,  1 Sep 2004 14:10:13 +0200
+
+reiser4progs (1.0.0-2) unstable; urgency=medium
+
+  * Reworded final warning of the debconf note.
+
+ -- Domenico Andreoli <cavok@debian.org>  Tue, 17 Aug 2004 12:18:40 +0200
+
+reiser4progs (1.0.0-1) unstable; urgency=low
+
+  * New upstream release (closes: #265763).
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 16 Aug 2004 14:19:30 +0200
+
+reiser4progs (0.5.6-3) unstable; urgency=medium
+
+  * Package is now always installed. The user is simply informed about
+    the requirements for the new disk format (closes: #264582).
+  * Switched to po-debconf (closes: #264334).
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri, 13 Aug 2004 13:50:02 +0200
+
+reiser4progs (0.5.6-2) unstable; urgency=low
+
+  * If required, package installation is now interrupted by the preinst
+    script instead of the postinst one.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu,  5 Aug 2004 10:55:28 +0200
+
+reiser4progs (0.5.6-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed,  4 Aug 2004 23:08:09 +0200
+
+reiser4progs (0.5.5-1) experimental; urgency=low
+
+  * New upstream (testing) release.
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed, 16 Jun 2004 22:19:29 +0200
+
+reiser4progs (0.5.4-3) experimental; urgency=low
+
+  * Updated to depend on latest libaal with memory manager in stand
+    alone library.
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri, 23 Apr 2004 02:33:44 +0200
+
+reiser4progs (0.5.4-2) experimental; urgency=low
+
+  * Stand alone library is now installed by libreiser4-dev. It is useful
+    to build support in tools such as grub.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu, 22 Apr 2004 14:03:02 +0200
+
+reiser4progs (0.5.4-1) experimental; urgency=low
+
+  * New upstream (testing) release.
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed, 21 Apr 2004 15:07:38 +0200
+
+reiser4progs (0.5.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri,  2 Apr 2004 16:09:35 +0200
+
+reiser4progs (0.5.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * No shared libraries are provided at the moment.
+
+ -- Domenico Andreoli <cavok@debian.org>  Sat, 28 Feb 2004 17:03:26 +0100
+
+reiser4progs (0.5.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu, 12 Feb 2004 14:49:39 +0100
+
+reiser4progs (0.4.20-1) unstable; urgency=low
+
+  * Initial release (closes: #165939).
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 19 Jan 2004 22:51:33 +0100

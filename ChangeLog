@@ -1,0 +1,187 @@
+This file is part of reiser4progs package
+
+Copyright (C) 2001, 2002, 2003, 2004 by Hans Reiser, licensing governed by
+reiser4progs/COPYING.
+
+This file may be modified and/or distributed without restriction. This is
+not an invitation to misrepresent the history of reiser4progs.
+
+2017-11-28
+	1.2.1 version;
+	Fix up configuration problem (From Felix Zielcke)
+2017-11-26
+	1.2.0 version;
+	Format release 4.0.2;
+	ZSTD1 compression support.
+2015-08-14
+	1.1.0 version
+2015-08-14
+	Format release 4.0.1;
+	Support checksum for formatted nodes;
+	NODE41 format with 32-bit field for checksums;
+2014-06-28
+	1.0.9 version
+2014-06-28
+	discard option to mkfs -- discard device at filesystem creation
+	time (for SSD drives)
+
+	Fixup in librepair/twig_scan.c: cb_item_region_check().
+2013-05-03
+	1.0.8 version
+2013-05-03
+	Fixups in fsck.reiser4: repair a special kind of corruptions
+	appeared due to software bugs in earlier kernels.
+
+	mkfs.reiser4 now enables intelligent compression with lzo1
+	algorithm by default. If you want to create reiser4 without
+	compression, then override the default plugin set with the
+	"-o create=reg40" option.
+2008-01-09
+	1.0.7 version.
+2008-01-09
+	Alias -p "preen" to -a "auto" for fsck.
+	Bugfixes:
+	- fixed bugs in CryptoCompression object plugin (incorrect handling
+	of corrupted compressed bodies).
+	- suppress messages about wrong bytes for CryptoCompression
+	objects	as in most cases it is because kernel doesn't support
+	i_blocks and i_bytes for such objects because of performance
+	issues. If wrong bytes is the result of fatal corruption, then
+	fsck will detect and report it.
+2006-02-22
+	1.0.6 version.
+2006-01-13
+	Version control data is added into format40 disk format plugin.
+	Version control data is added into backup blocks.
+	Recover filesystems of both old and new formats - temporary.
+	UPDATE_BACKUP_IS_NEEDED is added -- handle correctly cases when 
+	disk format is updated and backup blocks are not; fsck correctly.
+2005-12-09
+	Heir plugin SET (HSET) is added.
+2005-11-21
+	Bugfixes:
+	- a lot of fixes in compression tail item plugin;
+	- a lot of fixes in CryptoCompression object plugin;
+	- a lot of fixes in common object plugin repair code;
+	- in spec file.
+2005-11-08
+	A lot of speedups.
+	A lot of bugfixes.
+	Demos/busy program update: crypto compression test is added.
+2005-10-31
+	Bugfixes in truncate, clubber and check_struct methods of all object
+	plugins.
+2005-10-28
+	Compression plugin is added. 
+	CryptoCompression plugin is adjusted to handle compressed files.
+2005-10-14
+	Bugfixes:
+	- check the path given on a symlink creation;
+	- check the possible file position overflow;
+	- handle the cluster size of ctail items correctly.
+2005-09-31
+	Crypto-Compression Object plugins is added.
+	Fix the object creation: inherit always from the parent.
+	Fix the pset storage policy.
+2005-08-31
+	Compression tail item (ctail) plugin is added.
+2005-08-16
+	The full support for Crypto-Compression plugins is added into PluginSet
+	and libreiser4 profile.
+	Crypto SD extention is edded.
+2005-08-12
+	1.0.5 version.
+2005-08-10
+	Installation fix.
+	Return value fixes.
+	Backup block handling fixes.
+2005-06-28
+	Ability to link against libaal placed at arbitrary location is fixed.
+	Unlink dir fix.
+	Stat40 check_struct fix.
+	Man pages for not ready utils are removed.
+	Handle new (crc related) fields in plugin set correctly.
+	Flush fs metadata fix (interrupt related).
+	Do not flush dirty nodes if fsck fails.
+	Recalculate bitmap checksums at the end of fsck if they are wrong.
+	Do not update bitmaps after every fsck pass if no metadata found.
+2005-03-23
+	nomkid option to fsck -- ability to recover reiser4 w/out mkid check.
+2005-03-21
+	Large file handling fixes.
+2005-03-16
+	Some casting fixes.
+2005-02-21
+	Reg40 file body convertion fixes.
+2005-02-20
+	The 1.0.4 version.
+2005-02-19
+	A bugfix in file body convertion code.
+2005-02-17
+	Enable libminimal by default.
+	Do not configure empty utils(resizer, cpfs).
+2005-01-30
+	Some bug fixes in tree balancing, fs check, syncing code.
+2005-01-25
+	Some bug fixes in tree balancing code.
+2005-01-20
+	Bug fixes:
+	- in backup layout traverse code;
+	- in insert extent item-by-item code;
+2005-01-17
+	A way to recover fs metadata independently of the mkfs id is added.
+	Bug fixes:
+	- in repair code then a node has a pointer to itself;
+	- in not aligned access to different object on-disk data.
+2004-12-23
+	Bug fixes:
+	- in initializing object id fields in SB;
+	- in free blocks accounting;
+	- in journal unpack code.
+2004-12-12
+	Some bugfixes:
+	- in object/extent truncate code are fixed.
+	- in backup handling code is fixed.
+	- sware about libaal version correctly.
+2004-12-04
+	The version is 1.0.3
+2004-12-01
+	The Pack/unpack journal code is written.
+	Cleanups in program options.
+2004-11-25
+	Build either all or none progs statically.
+	The recover from unused space code is added. Could be used as undelete.
+2004-11-24
+	The backup code is written.
+2004-10-29
+	A bunch of bugs is fixed.
+2004-10-21
+	Object detach/unlink methods are fixed.
+	Fix the handling of special entries ('.', '..') in directory objects.
+	The version is 1.0.2.
+2004-10-15
+	File body write code (namely extent40 write) is rewritten
+	and does work now.
+2004-10-12
+	Make allocator CRC endian safe
+2004-10-07
+	A bunch of bugs is fixed in the balancing code
+2004-09-22
+	Change "stand alone" to "minimal footprint"
+2004-09-21
+	Get rid of key collision problem is tree_scan
+2004-09-16
+	sd_bytes fix for files larger then 4G.
+2004-09-14
+	Make ldconfig to run automatically on 'make install'.
+2004-09-13
+	Make r5 hash working correctly with extended ASCII characters.
+2004-08-24
+	Some bugs are fixed:
+	- in tree_scan method;
+	- in reading extent items;
+	- in man pages.
+	Some optimisations for stand-alone are added.
+	Version is 1.0.1.
+2004-08-09
+	1.0.0 version is released.

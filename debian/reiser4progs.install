@@ -1,0 +1,4 @@
+usr/sbin/debugfs.reiser4 sbin
+usr/sbin/fsck.reiser4 sbin
+usr/sbin/measurefs.reiser4 sbin
+usr/sbin/mkfs.reiser4 sbin

@@ -1,0 +1,12 @@
+This version of Reiser4 user-space tools works with a new disk
+format. In order to use this new disk format your kernel must be built
+with a recent version of the Reiser4 patch (ie. the one provided by
+package kernel-patch-2.6-reiser4 20040813-3).
+
+Existing Reiser4 filesystems continue to be supported by both old and
+new kernel patches but will result corrupted if checked with the new
+Reiser4 fsck. Conversion of old Reiser4 filesystems is explained in
+file /usr/share/doc/reiser4progs/NEWS.Debian.
+
+Please read /usr/share/doc/reiser4progs/NEWS.Debian in order not to
+lose your data.

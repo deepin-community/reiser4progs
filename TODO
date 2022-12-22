@@ -1,0 +1,30 @@
+This file is part of reiser4progs package
+
+
+Copyright (C) 2001, 2002, 2003, 2004 by Hans Reiser, licensing governed by
+reiser4progs/COPYING.
+
+* overview sources and eliminate all not needed differences between
+  kernel code and libreiser4.
+
+* handle holes overwriting in extent write code.
+
+* move plugin directory to libreiser4 directory. Maintain own plugin
+  directory in librepair. Move all repair code from libreiser4/plugin/*
+  to librepair/plugin/*.
+
+* fix unaligned access on Itanium2.
+
+* dumpfs utility.
+
+* implement tree_resize() and tree_copy().
+
+* plugin inheritance for objects.
+
+* big digits stat data fields format change.
+
+* change balancing algorithm from recursive to task oriented one
+  like kernel does.
+
+* online/offline resizer/repacker, manual page resizefs.
+* implement credits showing durring mkfs.

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+if [ ! -f ./configure.in ]; then
+	echo "Error: You should run this from the package directory."
+	exit 1
+fi
+
+if [ ! -x ./configure ]; then
+	echo "Making configure script..."
+	aclocal && (
+		autoheader && (
+			autoconf && (
+				automake --add-missing
+    			) || exit $?
+		) || exit $?
+	) || exit $?
+fi
+
+cpu_nr=$(cat /proc/cpuinfo | grep ^processor\.*:\.*[[:digit:]] | \
+wc -l | tr --delete [[:blank:]])
+
+if test "x$cpu_nr" = "x"; then
+	cpu_nr=1
+fi
+
+./configure && make -j$cpu_nr
+
+if [ $? != 0 ]; then
+	exit $?
+fi
+
+if test x$USER != "xroot"; then
+	echo "You are not root and installing may require root privilages. \
+Enter root password before install."
+fi
+
+sudo make install

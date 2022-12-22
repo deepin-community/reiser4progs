@@ -1,0 +1,52 @@
+Author: Mike Fleetwood <mike.fleetwood@googlemail.com>
+Date:   Mon Mar 15 21:09:17 2021 +0000
+Subject: Stop occasionally making file systems with null UUIDs
+
+mkfs.reiser4 was using strncpy() to copy a binary UUID into the
+in-memory copy of the superblock.  So if there was a zero byte in the
+UUID, then from that point to the end was set to all zeros.  If the
+first byte was zero, a 1 in 256 chance, then the whole UUID was set to
+zero generating a null UUID for the file system.  Fix this.
+
+Test case:
+    truncate -s 256M test.img
+    i=0
+    while :
+    do
+        mkfs.reiser4 --force --yes --label '' test.img
+        line=`debugfs.reiser4 test.img 2> /dev/null | egrep '^uuid:'`
+        ((i++))
+        echo "[$i] $line"
+        echo "$line" | grep -q '<none>' && break
+    done
+
+Output fragment:
+    [1] uuid:               17073919-e41d-4892-9b22-4294d1544c4a
+    [2] uuid:               af2821de-ea85-4f20-9621-4fbd128b3fb8
+    [3] uuid:               c0fb805b-e224-4695-a504-d87460d158ae
+    ...
+    [34] uuid:              b747540d-5280-4e0f-bae2-922200000000
+    [35] uuid:              d604794d-097f-4810-bbb3-01a1518f3ef1
+    [36] uuid:              9634100c-1f98-42b3-a684-c9df77ab54e2
+    [37] uuid:              <none>
+
+Signed-off-by: Mike Fleetwood <mike.fleetwood@googlemail.com>
+
+Origin: upstream, https://github.com/edward6/reiser4progs/commit/44cc024f398f60adef1519426d65f3f081ee826a
+Bug-Debian: https://bugs.debian.org/985586
+
+diff --git a/libreiser4/master.c b/libreiser4/master.c
+index 649434d96..825fd38d1 100644
+--- a/libreiser4/master.c
++++ b/libreiser4/master.c
+@@ -295,8 +295,8 @@ void reiser4_master_set_uuid(reiser4_master_t *master,
+ 		   sizeof(SUPER(master)->ms_uuid));
+ 	
+ 	if (uuid) {
+-		aal_strncpy(SUPER(master)->ms_uuid, uuid,
+-			    sizeof(SUPER(master)->ms_uuid));
++		aal_memcpy(SUPER(master)->ms_uuid, uuid,
++			   sizeof(SUPER(master)->ms_uuid));
+ 	} 
+ 	master->dirty = 1;
+ }

@@ -1,0 +1,2 @@
+SUBDIRS = format40
+
