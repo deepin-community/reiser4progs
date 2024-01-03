@@ -104,9 +104,8 @@ PROGRAMS = $(sbin_PROGRAMS)
 am_measurefs_reiser4_OBJECTS = measurefs_reiser4-measurefs.$(OBJEXT)
 measurefs_reiser4_OBJECTS = $(am_measurefs_reiser4_OBJECTS)
 am__DEPENDENCIES_1 =
-measurefs_reiser4_DEPENDENCIES =  \
-	$(top_builddir)/libreiser4/libreiser4.la \
-	$(top_builddir)/libmisc/libmisc.la $(am__DEPENDENCIES_1)
+measurefs_reiser4_DEPENDENCIES = $(top_builddir)/libmisc/libmisc.la \
+	$(top_builddir)/libreiser4/libreiser4.la $(am__DEPENDENCIES_1)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -305,8 +304,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 measurefs_reiser4_SOURCES = measurefs.c
-measurefs_reiser4_LDADD = $(top_builddir)/libreiser4/libreiser4.la \
-			     $(top_builddir)/libmisc/libmisc.la \
+measurefs_reiser4_LDADD = $(top_builddir)/libmisc/libmisc.la \
+			     $(top_builddir)/libreiser4/libreiser4.la \
 			     $(PROGS_LIBS)
 
 measurefs_reiser4_LDFLAGS = @PROGS_LDFLAGS@

@@ -7,7 +7,7 @@ Build-Depends: debhelper-compat (=12),
                libaal-dev (>= 1.0.7),
                libedit-dev,
                uuid-dev
-Standards-Version: 4.5.0
+Standards-Version: 4.6.0
 Homepage: https://reiser4.wiki.kernel.org
 
 Package: reiser4progs

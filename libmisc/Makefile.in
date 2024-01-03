@@ -100,16 +100,32 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 am__DEPENDENCIES_1 =
+@ENABLE_MINIMAL_TRUE@libmisc_minimal_la_DEPENDENCIES =  \
+@ENABLE_MINIMAL_TRUE@	$(am__DEPENDENCIES_1) \
+@ENABLE_MINIMAL_TRUE@	$(top_builddir)/libaux/libaux-minimal.la
+am__libmisc_minimal_la_SOURCES_DIST = misc.c profile.c exception.c \
+	gauge.c ui.c mpressure.c
+am__objects_1 = libmisc_minimal_la-misc.lo \
+	libmisc_minimal_la-profile.lo libmisc_minimal_la-exception.lo \
+	libmisc_minimal_la-gauge.lo libmisc_minimal_la-ui.lo \
+	libmisc_minimal_la-mpressure.lo
+@ENABLE_MINIMAL_TRUE@am_libmisc_minimal_la_OBJECTS = $(am__objects_1)
+libmisc_minimal_la_OBJECTS = $(am_libmisc_minimal_la_OBJECTS)
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+am__v_lt_0 = --silent
+am__v_lt_1 = 
+libmisc_minimal_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libmisc_minimal_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+@ENABLE_MINIMAL_TRUE@am_libmisc_minimal_la_rpath =
 libmisc_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/libaux/libaux-static.la
 am_libmisc_la_OBJECTS = libmisc_la-misc.lo libmisc_la-profile.lo \
 	libmisc_la-exception.lo libmisc_la-gauge.lo libmisc_la-ui.lo \
 	libmisc_la-mpressure.lo
 libmisc_la_OBJECTS = $(am_libmisc_la_OBJECTS)
-AM_V_lt = $(am__v_lt_@AM_V@)
-am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
-am__v_lt_0 = --silent
-am__v_lt_1 = 
 libmisc_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmisc_la_CFLAGS) \
 	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
@@ -147,8 +163,9 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libmisc_la_SOURCES)
-DIST_SOURCES = $(libmisc_la_SOURCES)
+SOURCES = $(libmisc_minimal_la_SOURCES) $(libmisc_la_SOURCES)
+DIST_SOURCES = $(am__libmisc_minimal_la_SOURCES_DIST) \
+	$(libmisc_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -302,7 +319,10 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-noinst_LTLIBRARIES = libmisc.la
+miscincludedir = -I$(top_srcdir)/include
+@ENABLE_MINIMAL_FALSE@MINIMAL_LIBS = 
+@ENABLE_MINIMAL_TRUE@MINIMAL_LIBS = libmisc-minimal.la
+noinst_LTLIBRARIES = libmisc.la $(MINIMAL_LIBS)
 libmisc_la_SOURCES = misc.c profile.c exception.c gauge.c ui.c \
 			  mpressure.c
 
@@ -310,7 +330,12 @@ libmisc_la_LIBADD = @AAL_LIBS@ $(UUID_LIBS) @PROGS_LIBS@ \
 			  $(top_builddir)/libaux/libaux-static.la
 
 libmisc_la_CFLAGS = @GENERIC_CFLAGS@
-AM_CPPFLAGS = -I$(top_srcdir)/include
+@ENABLE_MINIMAL_TRUE@libmisc_minimal_la_SOURCES = $(libmisc_la_SOURCES)
+@ENABLE_MINIMAL_TRUE@libmisc_minimal_la_LIBADD = @AAL_LIBS@ $(UUID_LIBS) @PROGS_LIBS@ \
+@ENABLE_MINIMAL_TRUE@			     $(top_builddir)/libaux/libaux-minimal.la
+
+@ENABLE_MINIMAL_TRUE@libmisc_minimal_la_CFLAGS = $(libmisc_la_CFLAGS)
+AM_CPPFLAGS = $(miscincludedir)
 all: all-am
 
 .SUFFIXES:
@@ -356,6 +381,9 @@ clean-noinstLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
+libmisc-minimal.la: $(libmisc_minimal_la_OBJECTS) $(libmisc_minimal_la_DEPENDENCIES) $(EXTRA_libmisc_minimal_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(libmisc_minimal_la_LINK) $(am_libmisc_minimal_la_rpath) $(libmisc_minimal_la_OBJECTS) $(libmisc_minimal_la_LIBADD) $(LIBS)
+
 libmisc.la: $(libmisc_la_OBJECTS) $(libmisc_la_DEPENDENCIES) $(EXTRA_libmisc_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libmisc_la_LINK)  $(libmisc_la_OBJECTS) $(libmisc_la_LIBADD) $(LIBS)
 
@@ -371,6 +399,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_la-mpressure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_la-profile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_la-ui.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_minimal_la-exception.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_minimal_la-gauge.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_minimal_la-misc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_minimal_la-mpressure.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_minimal_la-profile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmisc_minimal_la-ui.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -392,6 +426,48 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
+
+libmisc_minimal_la-misc.lo: misc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -MT libmisc_minimal_la-misc.lo -MD -MP -MF $(DEPDIR)/libmisc_minimal_la-misc.Tpo -c -o libmisc_minimal_la-misc.lo `test -f 'misc.c' || echo '$(srcdir)/'`misc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmisc_minimal_la-misc.Tpo $(DEPDIR)/libmisc_minimal_la-misc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='misc.c' object='libmisc_minimal_la-misc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -c -o libmisc_minimal_la-misc.lo `test -f 'misc.c' || echo '$(srcdir)/'`misc.c
+
+libmisc_minimal_la-profile.lo: profile.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -MT libmisc_minimal_la-profile.lo -MD -MP -MF $(DEPDIR)/libmisc_minimal_la-profile.Tpo -c -o libmisc_minimal_la-profile.lo `test -f 'profile.c' || echo '$(srcdir)/'`profile.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmisc_minimal_la-profile.Tpo $(DEPDIR)/libmisc_minimal_la-profile.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='profile.c' object='libmisc_minimal_la-profile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -c -o libmisc_minimal_la-profile.lo `test -f 'profile.c' || echo '$(srcdir)/'`profile.c
+
+libmisc_minimal_la-exception.lo: exception.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -MT libmisc_minimal_la-exception.lo -MD -MP -MF $(DEPDIR)/libmisc_minimal_la-exception.Tpo -c -o libmisc_minimal_la-exception.lo `test -f 'exception.c' || echo '$(srcdir)/'`exception.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmisc_minimal_la-exception.Tpo $(DEPDIR)/libmisc_minimal_la-exception.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='exception.c' object='libmisc_minimal_la-exception.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -c -o libmisc_minimal_la-exception.lo `test -f 'exception.c' || echo '$(srcdir)/'`exception.c
+
+libmisc_minimal_la-gauge.lo: gauge.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -MT libmisc_minimal_la-gauge.lo -MD -MP -MF $(DEPDIR)/libmisc_minimal_la-gauge.Tpo -c -o libmisc_minimal_la-gauge.lo `test -f 'gauge.c' || echo '$(srcdir)/'`gauge.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmisc_minimal_la-gauge.Tpo $(DEPDIR)/libmisc_minimal_la-gauge.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gauge.c' object='libmisc_minimal_la-gauge.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -c -o libmisc_minimal_la-gauge.lo `test -f 'gauge.c' || echo '$(srcdir)/'`gauge.c
+
+libmisc_minimal_la-ui.lo: ui.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -MT libmisc_minimal_la-ui.lo -MD -MP -MF $(DEPDIR)/libmisc_minimal_la-ui.Tpo -c -o libmisc_minimal_la-ui.lo `test -f 'ui.c' || echo '$(srcdir)/'`ui.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmisc_minimal_la-ui.Tpo $(DEPDIR)/libmisc_minimal_la-ui.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ui.c' object='libmisc_minimal_la-ui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -c -o libmisc_minimal_la-ui.lo `test -f 'ui.c' || echo '$(srcdir)/'`ui.c
+
+libmisc_minimal_la-mpressure.lo: mpressure.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -MT libmisc_minimal_la-mpressure.lo -MD -MP -MF $(DEPDIR)/libmisc_minimal_la-mpressure.Tpo -c -o libmisc_minimal_la-mpressure.lo `test -f 'mpressure.c' || echo '$(srcdir)/'`mpressure.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmisc_minimal_la-mpressure.Tpo $(DEPDIR)/libmisc_minimal_la-mpressure.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='mpressure.c' object='libmisc_minimal_la-mpressure.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_minimal_la_CFLAGS) $(CFLAGS) -c -o libmisc_minimal_la-mpressure.lo `test -f 'mpressure.c' || echo '$(srcdir)/'`mpressure.c
 
 libmisc_la-misc.lo: misc.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmisc_la_CFLAGS) $(CFLAGS) -MT libmisc_la-misc.lo -MD -MP -MF $(DEPDIR)/libmisc_la-misc.Tpo -c -o libmisc_la-misc.lo `test -f 'misc.c' || echo '$(srcdir)/'`misc.c
