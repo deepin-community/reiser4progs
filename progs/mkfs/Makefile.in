@@ -104,8 +104,8 @@ PROGRAMS = $(sbin_PROGRAMS)
 am_mkfs_reiser4_OBJECTS = mkfs_reiser4-mkfs.$(OBJEXT)
 mkfs_reiser4_OBJECTS = $(am_mkfs_reiser4_OBJECTS)
 am__DEPENDENCIES_1 =
-mkfs_reiser4_DEPENDENCIES = $(top_builddir)/libreiser4/libreiser4.la \
-	$(top_builddir)/libmisc/libmisc.la $(am__DEPENDENCIES_1)
+mkfs_reiser4_DEPENDENCIES = $(top_builddir)/libmisc/libmisc.la \
+	$(top_builddir)/libreiser4/libreiser4.la $(am__DEPENDENCIES_1)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -303,8 +303,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 mkfs_reiser4_SOURCES = mkfs.c
-mkfs_reiser4_LDADD = $(top_builddir)/libreiser4/libreiser4.la \
-			  $(top_builddir)/libmisc/libmisc.la \
+mkfs_reiser4_LDADD = $(top_builddir)/libmisc/libmisc.la \
+			  $(top_builddir)/libreiser4/libreiser4.la \
 			  $(PROGS_LIBS)
 
 mkfs_reiser4_LDFLAGS = @PROGS_LDFLAGS@

@@ -104,9 +104,9 @@ PROGRAMS = $(sbin_PROGRAMS)
 am_fsck_reiser4_OBJECTS = fsck_reiser4-fsck.$(OBJEXT) \
 	fsck_reiser4-backup.$(OBJEXT)
 fsck_reiser4_OBJECTS = $(am_fsck_reiser4_OBJECTS)
-fsck_reiser4_DEPENDENCIES = $(top_builddir)/libreiser4/libreiser4.la \
+fsck_reiser4_DEPENDENCIES = $(top_builddir)/libmisc/libmisc.la \
 	$(top_builddir)/librepair/librepair.la \
-	$(top_builddir)/libmisc/libmisc.la
+	$(top_builddir)/libreiser4/libreiser4.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -304,9 +304,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 fsck_reiser4_SOURCES = fsck.c backup.c fsck.h backup.h
-fsck_reiser4_LDADD = $(top_builddir)/libreiser4/libreiser4.la \
+fsck_reiser4_LDADD = $(top_builddir)/libmisc/libmisc.la \
 			  $(top_builddir)/librepair/librepair.la \
-			  $(top_builddir)/libmisc/libmisc.la \
+			  $(top_builddir)/libreiser4/libreiser4.la \
 			  @PROGS_LIBS@
 
 fsck_reiser4_LDFLAGS = @PROGS_LDFLAGS@

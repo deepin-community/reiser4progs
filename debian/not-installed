@@ -1,0 +1,4 @@
+usr/lib/*/libreiser4-minimal.la
+usr/lib/*/libreiser4.la
+usr/lib/*/librepair.la
+usr/sbin/make_reiser4
